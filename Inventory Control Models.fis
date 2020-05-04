@@ -1,0 +1,71 @@
+[System]
+Name='Inventory Control Models'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='mom'
+
+[Input1]
+Name='demand__(D)'
+Range=[-50 50]
+NumMFs=5
+MF1='F':'trapmf',[-51 -50 -40 -20]
+MF2='D':'trimf',[-40 -20 0]
+MF3='S':'trimf',[-20 0 20]
+MF4='I':'trimf',[0 20 40]
+MF5='R':'trapmf',[20 40 50 51]
+
+[Input2]
+Name='quantity-on-hands__(QOH)'
+Range=[100 200]
+NumMFs=5
+MF1='M':'trapmf',[99 100 110 130]
+MF2='L':'trimf',[110 130 150]
+MF3='A':'trimf',[130 150 170]
+MF4='H':'trimf',[150 170 190]
+MF5='E':'trapmf',[170 190 200 201]
+
+[Output1]
+Name='inventory__action__(IA)'
+Range=[-50 50]
+NumMFs=7
+MF1='NL':'trapmf',[-51 -50 -45 -30]
+MF2='NM':'trimf',[-45 -30 -15]
+MF3='NS':'trimf',[-30 -15 0]
+MF4='O':'trimf',[-15 0 15]
+MF5='PS':'trimf',[0 15 30]
+MF6='PM':'trimf',[15 30 45]
+MF7='PL':'trapmf',[30 45 50 51]
+
+[Rules]
+1 1, 4 (1) : 1
+1 2, 4 (1) : 1
+1 3, 3 (1) : 1
+1 4, 2 (1) : 1
+1 5, 1 (1) : 1
+2 1, 5 (1) : 1
+2 2, 4 (1) : 1
+2 3, 3 (1) : 1
+2 4, 2 (1) : 1
+2 5, 2 (1) : 1
+3 1, 6 (1) : 1
+3 2, 5 (1) : 1
+3 3, 4 (1) : 1
+3 4, 3 (1) : 1
+3 5, 2 (1) : 1
+4 1, 6 (1) : 1
+4 2, 6 (1) : 1
+4 3, 5 (1) : 1
+4 4, 4 (1) : 1
+4 5, 4 (1) : 1
+5 1, 7 (1) : 1
+5 2, 7 (1) : 1
+5 3, 6 (1) : 1
+5 4, 5 (1) : 1
+5 5, 4 (1) : 1
